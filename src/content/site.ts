@@ -74,7 +74,7 @@ export type Product = {
 export const products: readonly Product[] = [
   {
     slug: "daily5verses",
-    name: "Daily5Verses",
+    name: "하루5절 (Daily5Verses)",
     description: "매일 다섯 절의 말씀과 묵상 기록",
     status: "live",
     // 스토어 출시 링크가 확정되면 추가하세요. 그러면 카드 전체가 링크가 됩니다.
