@@ -1,5 +1,12 @@
 import { ImageResponse } from "next/og";
 
+import { locales } from "@/content/config";
+
+/** 언어별로 미리 생성해 두어 정적 자산으로 서빙되게 합니다. */
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
+
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "Pistachio — Software Studio";

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { PistachioMark } from "@/components/PistachioMark";
-import { productStatusLabel, type Product } from "@/content/site";
+import type { ProductStatus } from "@/content/config";
 
 /**
  * status에 따라 두 가지 형태로 렌더링됩니다.
@@ -9,14 +9,26 @@ import { productStatusLabel, type Product } from "@/content/site";
  *  - upcoming: 점선 테두리 + 회색 배지. 이름은 읽을 수 있는 명도를 유지합니다.
  * href가 있으면 카드 전체가 링크가 됩니다.
  */
-export function ProductCard({ product }: { product: Product }) {
-  const isUpcoming = product.status === "upcoming";
+export function ProductCard({
+  name,
+  description,
+  status,
+  statusLabel,
+  href,
+}: {
+  name: string;
+  description: string;
+  status: ProductStatus;
+  statusLabel: string;
+  href?: string;
+}) {
+  const isUpcoming = status === "upcoming";
 
   const shell = isUpcoming
     ? "border-dashed border-line-soft bg-transparent"
     : "border-solid border-line bg-card";
 
-  const interactive = product.href
+  const interactive = href
     ? "transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-sage"
     : "";
 
@@ -34,7 +46,7 @@ export function ProductCard({ product }: { product: Product }) {
               : "bg-pistachio/20 text-leaf"
           }`}
         >
-          {productStatusLabel[product.status]}
+          {statusLabel}
         </span>
       </div>
 
@@ -43,23 +55,23 @@ export function ProductCard({ product }: { product: Product }) {
           isUpcoming ? "text-muted" : "text-ink"
         }`}
       >
-        {product.name}
+        {name}
       </span>
       <span
         className={`text-[16px] leading-[1.65] ${
           isUpcoming ? "text-muted-soft" : "text-muted"
         }`}
       >
-        {product.description}
+        {description}
       </span>
     </>
   );
 
   const className = `flex flex-col gap-3 rounded-[20px] border px-8 pt-[34px] pb-[30px] ${shell} ${interactive}`;
 
-  if (product.href) {
+  if (href) {
     return (
-      <Link href={product.href} className={className}>
+      <Link href={href} className={className}>
         {content}
       </Link>
     );
