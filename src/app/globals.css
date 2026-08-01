@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/**
+ * 디자인 토큰. Tailwind v4의 @theme에 정의하면
+ * bg-cream / text-ink / border-line 같은 유틸리티가 자동 생성됩니다.
+ */
+@theme {
+  --color-cream: #faf7f0;
+  --color-shell: #f5f1e7;
+  --color-card: #fffdf8;
+
+  --color-ink: #3a3833;
+  --color-muted: #6b675e;
+  --color-muted-soft: #8a857a;
+  --color-muted-faint: #a9a396;
+
+  --color-pistachio: #93c572;
+  --color-pistachio-deep: #82b75f;
+  --color-pistachio-ink: #23301a;
+  --color-sage: #a8c686;
+  --color-leaf: #5f7a45;
+
+  --color-line: #ebe5d8;
+  --color-line-soft: #dcd5c4;
+  --color-stone: #e4decf;
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* sticky 헤더 높이만큼 앵커 스크롤을 보정 */
+  scroll-padding-top: 88px;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 키보드 사용자를 위한 일관된 포커스 링 */
+:focus-visible {
+  outline: 2px solid var(--color-leaf);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
